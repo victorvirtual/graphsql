@@ -10,5 +10,7 @@
     "graphql"
   ],
   "author": "victor perez",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
 }
