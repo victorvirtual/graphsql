@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="reglist">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Email</th>
+          <th>Pais</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registro of registros; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ registro.nombres }}</td>
+          <td>{{ registo.apellidos }}</td>
+          <td>{{ registro.fc | date:"dd/MM/yyyy"}}</td>
+          <td>{{ registro.email }}</td>
+          <td>{{ registro.pais }}</td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="onEditar(i)">Editar</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="onEliminar(i)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary" (click)="onNuevo()">Nuevo</button>
+    </div>
+  </div>
+  <br>
+  <div class="regentry" *ngIf="mostrarNuevo">
+    <form (ngSubmit)="onGuardar()">
+      <div class="form-group row">
+        <label for="nombres-input" class="col-2 col-form-label">Nombres</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModelo.nombres" name="nombres">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="apellidos-input" class="col-2 col-form-label">Apellidos</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModelo.Apellidos" name="apellidos">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="fc-input" class="col-2 col-form-label">FEcha de Nacimiento</label>
+        <div class="col-3 input-group">
+          <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="fc" [(ngModel)]="regModelo.fc" ngbDatepicker #dob="ngbDatepicker">
+          <button class="input-group-addon" (click)="fc.toggle()" type="button">
+            <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+          </button>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-email-input" class="col-2 col-form-label">Email</label>
+        <div class="col-10">
+          <input class="form-control" type="email" [(ngModel)]="regModelo.email" name="email">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-password-input" class="col-2 col-form-label">Password</label>
+        <div class="col-10">
+          <input class="form-control" type="password" [(ngModel)]="regModelo.password" name="password">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="pais-input" class="col-2 col-form-label">Pais</label>
+        <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
+          <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="pais" ngbDropdownToggle>{{regModelo.pais}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button type="button" class="dropdown-item" *ngFor="let pais of paises" (click)="onCambiarPaid(country)">{{pais}}</button>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">{{submitType}}</button>
+      <button type="submit" class="btn btn-primary" (click)="onCancelar()">Cancelar</button>
+    </form>
+  </div>
+</div>
