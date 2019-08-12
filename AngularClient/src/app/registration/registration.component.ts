@@ -48,7 +48,7 @@ export class RegistrationComponent implements OnInit {
       {
         Registrations {
           id
-          nonbres
+          nombres
           apellidos
           fc
           email
@@ -65,12 +65,13 @@ export class RegistrationComponent implements OnInit {
       .valueChanges.map((result: any) => result.data.Registrations)
       .subscribe(data => {
         this.registros = data;
+        console.log(this.registros);
       });
   }
 
   onNuevo() {
     this.regModelo = new Registro();
-    this.submitType = "Save";
+    this.submitType = "Guardar";
     this.mostrarNuevo = true;
   }
 
@@ -82,7 +83,7 @@ export class RegistrationComponent implements OnInit {
       this.regModelo.fc.month.toString() +
       "-" +
       this.regModelo.fc.day.toString();
-    if (this.submitType === "Save") {
+    if (this.submitType === "Guardar") {
       const guardarRegistro = gql`
         mutation createRegistration(
           $nombres: String!

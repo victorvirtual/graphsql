@@ -17,7 +17,7 @@
         <tr *ngFor="let registro of registros; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ registro.nombres }}</td>
-          <td>{{ registo.apellidos }}</td>
+          <td>{{ registro.apellidos }}</td>
           <td>{{ registro.fc | date:"dd/MM/yyyy"}}</td>
           <td>{{ registro.email }}</td>
           <td>{{ registro.pais }}</td>
@@ -46,7 +46,7 @@
       <div class="form-group row">
         <label for="apellidos-input" class="col-2 col-form-label">Apellidos</label>
         <div class="col-10">
-          <input class="form-control" type="text" [(ngModel)]="regModelo.Apellidos" name="apellidos">
+          <input class="form-control" type="text" [(ngModel)]="regModelo.apellidos" name="apellidos">
         </div>
       </div>
       <div class="form-group row">
@@ -75,7 +75,7 @@
         <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
           <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="pais" ngbDropdownToggle>{{regModelo.pais}}</button>
           <div ngbDropdownMenu aria-labelledby="dropdownManual">
-            <button type="button" class="dropdown-item" *ngFor="let pais of paises" (click)="onCambiarPaid(country)">{{pais}}</button>
+            <button type="button" class="dropdown-item" *ngFor="let pais of paises" (click)="onCambiarPais(pais)">{{pais}}</button>
           </div>
         </div>
       </div>
